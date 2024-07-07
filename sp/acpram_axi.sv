@@ -179,7 +179,6 @@ wire logic r_hshake_last = r_hshake && axi_r.rlast;
 // Set up the AXI Read Channel interface
 //
 // Read Address
-assign axi_ar.araddr[39:32] = '0;
 assign axi_ar.arlen[7:2] = '0;
 assign axi_ar.arid = '0;
 assign axi_ar.arsize = 3'h4;
@@ -330,9 +329,9 @@ always_ff @(posedge clock) begin
 			// This sets AWLEN
 			// to 0 (1 transfer)  for acpram_axi_i.len==0 and
 			// to 3 (4 transfers) for acpram_axi_i.len==1
+			axi_aw.awaddr <= acpram_axi_i.axi_addr;
 			axi_aw.awlen[0] <= acpram_axi_i.len;
 			axi_aw.awlen[1] <= acpram_axi_i.len;
-			axi_aw.awaddr[39:0] <= acpram_axi_i.axi_addr;
 			acpram_port_i.addr <= acpram_axi_i.acpram_addr;
 			acpram_axi_i.busy <= 1'b1;
 			write_burst_pre <= 1'b1;
@@ -357,13 +356,12 @@ always_ff @(posedge clock) begin
 			$display("acpram_axi_i.read pulse: .acpram_addr=%x .axi_addr=%x .len=%d",
 				acpram_axi_i.acpram_addr, acpram_axi_i.axi_addr, acpram_axi_i.len);
 
-			axi_ar.araddr[39:0] <= acpram_axi_i.axi_addr;
 			// This sets ARLEN
 			// to 0 (1 transfer)  for acpram_axi_i.len==0 and
 			// to 3 (4 transfers) for acpram_axi_i.len==1
+			axi_ar.araddr <= acpram_axi_i.axi_addr;
 			axi_ar.arlen[0] <= acpram_axi_i.len;
 			axi_ar.arlen[1] <= acpram_axi_i.len;
-			axi_ar.araddr <= acpram_axi_i.axi_addr;
 
 			acpram_port_i.addr <= acpram_axi_i.acpram_addr;
 			acpram_axi_i.busy <= 1'b1;
