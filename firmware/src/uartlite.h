@@ -39,7 +39,7 @@
 #define UARTLITE_CTRL_ENINTR		(1 << 4)
 
 // Change this to whatever is correct for your project.
-#define UARTLITE0_BASE		0xa1000000
+#define UARTLITE0_BASE		0xa0010000
 
 void uartlite_init();
 
