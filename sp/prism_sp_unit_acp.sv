@@ -44,7 +44,7 @@ module prism_sp_unit_acp#(
  * Interfaces for the ACP memory
  */
 acpram_axi_interface #(
-	.ACPRAM_ADDR_WIDTH($bits(acpram_port_i.din)),
+	.ACPRAM_ADDR_WIDTH($bits(acpram_port_i.addr)),
 	// The Xilinx Ultrascale+ MPSoC ACP port has address widths of 40 bit.
 	.AXI_ADDR_WIDTH(40)
 ) acpram_axi_i();
