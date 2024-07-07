@@ -532,7 +532,7 @@ if (ENABLE_RX_RISCV_PROCESSOR) begin
 		.mmr_rw,
 		.mmr_r,
 		.mmr_i(sw_mmr_i),
-		.mmr_t(hw_mmr_t),
+		.mmr_t(sw_mmr_t),
 
 		// Interfaces used by the ACP unit
 		.m_axi_acp_aw,
