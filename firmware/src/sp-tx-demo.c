@@ -53,7 +53,7 @@ main()
 	uart_init();
 
 	printf("----\n");
-	printf("Stream Processor/GEM TX demo firmware version 0.1e\n");
+	printf("Stream Processor/GEM TX AOHW24 firmware version 0.7\n");
 	printf("Running on core=%d\n", core_index);
 	printf("----\n");
 	printf("Waiting for start signal.\n");
