@@ -85,7 +85,7 @@ prism_sp_puzzle_hw_gem_ring_acquire #(
 	.axi_ar(axi_ma_ar),
 	.axi_r(axi_ma_r),
 	.conv(racc),
-	.o_cookie_fifo_w(fifo_w_1)
+	.o_cookie_fifo_w(fifo_w_0)
 );
 end
 
@@ -94,9 +94,9 @@ prism_sp_puzzle_hw_gem_dma_write_0 (
 	.clock,
 	.resetn,
 
-	.i_cookie_fifo_r(fifo_r_1),
+	.i_cookie_fifo_r(fifo_r_0),
 	.meta_desc_fifo_r(rx_meta_fifo_r),
-	.o_cookie_fifo_w(fifo_w_2),
+	.o_cookie_fifo_w(fifo_w_1),
 
 	.rx_data_mem_w
 

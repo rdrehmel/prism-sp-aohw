@@ -351,7 +351,7 @@ localparam int ENABLE_RX_SW_RX_DATA_MEM_W = 0;
  */
 localparam int ENABLE_RX_SW_RX_META_FIFO_R = 0;
 
-localparam int ENABLE_RX_RISCV_PROCESSOR = 0;
+localparam int ENABLE_RX_RISCV_PROCESSOR = 1;
 
 /*
  * RX Puzzle FIFO configuration.
@@ -360,28 +360,36 @@ localparam int NRXPUZZLEFIFOS = 4;
 
 localparam int ENABLE_RX_PUZZLE_SW_FIFO_R [NRXPUZZLEFIFOS] = {
 	0,
-	0,
+	1,
 	0,
 	0
 };
 localparam int ENABLE_RX_PUZZLE_SW_FIFO_W [NRXPUZZLEFIFOS] = {
 	0,
 	0,
-	0,
+	1,
 	0
 };
 
 localparam int RX_PUZZLE_FIFO_R_DATA_WIDTH [NRXPUZZLEFIFOS] = {
-	FIFO_MIN_WIDTH,
+	// From job acquire to job process
 	$bits(dma_rx_cookie_t),
+	// From job process to risc-v core
 	$bits(rx_cookie_t),
+	// From risc-v core to job release
+	$bits(rx_cookie_t),
+	// From job release to notify
 	FIFO_MIN_WIDTH
 };
 
 localparam int RX_PUZZLE_FIFO_W_DATA_WIDTH [NRXPUZZLEFIFOS] = {
-	FIFO_MIN_WIDTH,
+	// From job acquire to job process
 	$bits(dma_rx_cookie_t),
+	// From job process to risc-v core
 	$bits(rx_cookie_t),
+	// From risc-v core to job release
+	$bits(rx_cookie_t),
+	// From job release to notify
 	FIFO_MIN_WIDTH
 };
 
@@ -471,16 +479,24 @@ localparam int ENABLE_TX_PUZZLE_SW_FIFO_W [NTXPUZZLEFIFOS] = {
 };
 
 localparam int TX_PUZZLE_FIFO_R_DATA_WIDTH [NTXPUZZLEFIFOS] = {
-	$bits(dma_tx_cookie_t),
-	$bits(dma_tx_cookie_t),
+	// From job acquire to risc-v core
 	$bits(tx_cookie_t),
+	// From risc-v core to job process
+	$bits(dma_tx_cookie_t),
+	// From job process to job release
+	$bits(tx_cookie_t),
+	// From job release to notify
 	FIFO_MIN_WIDTH
 };
 
 localparam int TX_PUZZLE_FIFO_W_DATA_WIDTH [NTXPUZZLEFIFOS] = {
-	$bits(dma_tx_cookie_t),
-	$bits(dma_tx_cookie_t),
+	// From job acquire to risc-v core
 	$bits(tx_cookie_t),
+	// From risc-v core to job process
+	$bits(dma_tx_cookie_t),
+	// From job process to job release
+	$bits(tx_cookie_t),
+	// From job release to notify
 	FIFO_MIN_WIDTH
 };
 
