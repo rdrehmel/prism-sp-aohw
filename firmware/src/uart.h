@@ -71,4 +71,6 @@
 #define UART0_REF_CTRL_OFF		0x74
 #define UART1_REF_CTRL_OFF		0x78
 
+void uart_init();
+
 #endif

@@ -41,4 +41,6 @@
 // Change this to whatever is correct for your project.
 #define UARTLITE0_BASE		0xa1000000
 
+void uartlite_init();
+
 #endif
